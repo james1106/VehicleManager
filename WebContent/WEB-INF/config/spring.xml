@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+	http://www.springframework.org/schema/mvc  
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd  
+	http://www.springframework.org/schema/context  
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop   
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd   
+	http://www.springframework.org/schema/task    
+	http://www.springframework.org/schema/task/spring-task-4.0.xsd 
+	http://www.springframework.org/schema/tx    
+	http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+	http://www.springframework.org/schema/cache 
+	http://www.springframework.org/schema/cache/spring-cache-3.1.xsd">
+
+	<!-- 1.注解配置 -->
+	<!-- *启动注解 -->
+	<context:annotation-config />
+	<!-- <mvc:annotation-driven /> -->
+	<!-- 暂时没有任务 -->
+	<task:annotation-driven />
+	
+	
+	<!-- *启动切面 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+	<!-- 2.数据层 -->
+	<!-- 读取properties文件的方式 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<bean id="mainDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${main.driverClassName}" />
+		<property name="url" value="${main.url}" />
+		<property name="username" value="${main.username}" />
+		<property name="password" value="${main.password}" />
+	</bean>
+	
+	<!-- 配置jdbc的模板类JdbcTemplate -->
+	<bean id="mainJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="mainDataSource" />
+	</bean> 
+	<!-- 事务 -->
+	<bean id="mainTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" depends-on="mainDataSource">
+		<property name="dataSource" ref="mainDataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="mainTxManager" proxy-target-class="true" />
+	
+	<!-- 3.web组件 -->
+	<!-- 3.1.扫描web组件,完成bean的创建以及自动依赖注入 -->
+	<context:component-scan base-package="com.xpizza.vclemgr.controller;
+										  com.xpizza.vclemgr.service;
+										  com.xpizza.vclemgr.dao;
+										  com.xpizza.vclemgr.scheduler;
+										  com.xpizza.vclemgr.anno.aspect" />
+	<!-- 3.2.启动spring mvc注解,完成请求和注解的POJO映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<!-- 3.3.对模型视图名称的解析(对模型视图名称添加前后缀) -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:order="1" p:suffix=".jsp" />
+	<!-- 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:order="2" p:suffix=".html" />
+	 -->
+	
+	
+	
+	<!-- ***********************************************************分割线.添加定制效果*********************************************************** -->
+	<!-- 1.全局配置 -->
+	<!-- 1.1.自定义拦截器 -->
+	<!-- 
+	<mvc:interceptors>
+		<bean id="lawlessAuthInterceptor" class="com.tf.vclemgr.component.filter.LawlessAuthInterceptor"></bean>
+	</mvc:interceptors>
+	 -->
+	
+	<!-- 2.resolvers -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="com.xpizza.core.component.resolver.SessionArgumentResolver" lazy-init="false"/>
+    	</mvc:argument-resolvers>
+    	<mvc:return-value-handlers>
+    		<bean class="com.xpizza.core.component.resolver.ReturnDataResolver" lazy-init="false"></bean>
+    	</mvc:return-value-handlers>
+	</mvc:annotation-driven>
+	<!-- 通用页面设置 -->
+	<bean id="genericExceptionResolver" class="com.xpizza.core.component.resolver.GenericExceptionResolver"/>
+	
+</beans>
