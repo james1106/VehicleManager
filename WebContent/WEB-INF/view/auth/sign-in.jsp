@@ -6,7 +6,7 @@
 <title>登录</title>
 
 </head>
-<body class="">
+<body class="" onkeydown='if(event.keyCode==13){gosubmit();}'>
 	<div class="row"></div>
 	<div class="row-fluid">
 		<div class="dialog">
@@ -16,29 +16,35 @@
 					<form>
 						<label>用户名</label> <input type="text" class="span12">
 						<label>密码</label> <input type="password" class="span12">
-						<a href="index.html" class="btn btn-primary pull-right">登 录</a>
+						<a href="javascript:gosubmit();" class="btn btn-primary pull-right">登 录</a>
 						<label class="remember-me"><input type="checkbox">记住我</label>
 						<div class="clearfix"></div>
 					</form>
 				</div>
 			</div>
+			<!-- 
 			<p class="pull-right" style="">
-				<a href="#" target="blank"></a>
-			</p>
-			<p>
 				<a href="reset-password.html">忘记密码?</a>
 			</p>
+			<p>
+				<a href="#" target="blank"></a>
+			</p>
+			 -->
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		$("[rel=tooltip]").tooltip();
-		$(function() {
-			$('.demo-cancel-click').click(function() {
-				return false;
-			});
-		});
-	</script>
-
 </body>
+<script type="text/javascript">
+	$("[rel=tooltip]").tooltip();
+	$(function() {
+		$('.demo-cancel-click').click(function() {
+			return false;
+		});
+	});
+	
+	function gosubmit(){
+		alert("submit");
+	}
+</script>
 </html>
+
