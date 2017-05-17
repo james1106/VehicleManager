@@ -10,12 +10,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	
+	<!-- 
     <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/lib/bootstrap/css/bootstrap.css">
+     -->
+    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/bootstrap/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/toastr/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/stylesheets/theme.css">
     <link rel="stylesheet" href="<%=ctxPath %>/lib/font-awesome/css/font-awesome.css">
-    <script src="<%=ctxPath %>/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="<%=ctxPath %>/mycss/common.css">
+    <link rel="stylesheet" href="<%=ctxPath %>/mycss/button.css">
+    <script src="<%=ctxPath %>/libraries/jquery-1.11.1.min.js"></script>
+    <!-- 
     <script src="<%=ctxPath %>/lib/bootstrap/js/bootstrap.js"></script>
+     -->
+    <script src="<%=ctxPath %>/libraries/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=ctxPath %>/libraries/toastr/toastr.min.js"></script>
+    <script src="<%=ctxPath %>/myjs/common.js"></script>
+    <script src="<%=ctxPath %>/myjs/AjaxUtil.js"></script>
     
     <!-- Le fav and touch icons -->
     <!-- 

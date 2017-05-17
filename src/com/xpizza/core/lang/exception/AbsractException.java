@@ -2,7 +2,7 @@ package com.xpizza.core.lang.exception;
 
 /** 自定义异常抽象类 */
 @SuppressWarnings("serial")
-public abstract class AbsractException extends Exception {
+public abstract class AbsractException extends RuntimeException {
 
 	public AbsractException() {
 		super();
@@ -29,4 +29,5 @@ public abstract class AbsractException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 }

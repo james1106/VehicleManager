@@ -18,6 +18,7 @@ public class Data {
 
 	public Data() {
 		dataMap.put("isOk", true);
+		dataMap.put("msg", "操作成功");
 	}
 
 	public void add(String modelName, Object modelObject) {
@@ -26,6 +27,12 @@ public class Data {
 
 	public void addAll(Map<String, Object> dataMap) {
 		this.dataMap.putAll(dataMap);
+	}
+
+	/** 设置错误信息 */
+	public void setError(String message) {
+		dataMap.put("isOk", false);
+		dataMap.put("msg", message);
 	}
 
 }
