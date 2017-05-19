@@ -32,10 +32,6 @@ public class AuthController {
 	public void showPages() {
 	}
 
-	/*
-	@ResponseBody
-	@RequestMapping(value = "signIn.action", produces = "application/json;charset=utf-8")
-	*/
 	@Json
 	@RequestMapping("signIn.action")
 	public Data signIn(String username, String password, HttpServletRequest request) {
@@ -47,7 +43,7 @@ public class AuthController {
 			session.setAttribute(Constant.SESSION_USERNAME, signedUser.getUsername());
 			session.setAttribute(Constant.SESSION_USERID, signedUser.getId());
 		} catch (Throwable thr) {
-			logger.error(thr.getMessage(), thr);
+			logger.warn(thr.getMessage());
 			data.setError(thr.getMessage());
 		}
 		return data;

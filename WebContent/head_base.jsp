@@ -10,55 +10,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+	<!-- css -->	
+	<!-- my lib -->
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/font/font-awesome.css" />
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/font/googleapis-fonts/fonts.css" />
+	<!-- open source lib -->
+	<!-- bootstrap -->
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/bootstrap/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/bootstrap/css/bootstrap-responsive.min.css" />
+	<!-- toastr -->
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/toastr/toastr.min.css" />
 	
-	<!-- 
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/lib/bootstrap/css/bootstrap.css">
-     -->
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/bootstrap/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/libraries/toastr/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/stylesheets/theme.css">
-    <link rel="stylesheet" href="<%=ctxPath %>/lib/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="<%=ctxPath %>/mycss/common.css">
-    <link rel="stylesheet" href="<%=ctxPath %>/mycss/button.css">
-    <script src="<%=ctxPath %>/libraries/jquery-1.11.1.min.js"></script>
-    <!-- 
-    <script src="<%=ctxPath %>/lib/bootstrap/js/bootstrap.js"></script>
-     -->
-    <script src="<%=ctxPath %>/libraries/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<%=ctxPath %>/libraries/toastr/toastr.min.js"></script>
-    <script src="<%=ctxPath %>/myjs/common.js"></script>
-    <script src="<%=ctxPath %>/myjs/AjaxUtil.js"></script>
+	<!-- plugin -->
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/bootstrap-overrides.css" />
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/jquery-ui-1.10.2.custom.css" />
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/layout.css" />
+    <link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/elements.css" />
+    <link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/icons.css" />
+    <link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/index.css" />
+	
+	
+	
+	<!-- js -->
+    <!-- open source lib -->
+    <script type="text/javascript" src="<%=ctxPath %>/libo/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/libo/toastr/toastr.min.js"></script>
     
-    <!-- Le fav and touch icons -->
-    <!-- 
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+	<!-- my lib -->
+    <script type="text/javascript" src="<%=ctxPath %>/libi/js/FormUtil.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/libi/js/Message.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/libi/js/AjaxUtil.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/libi/js/SelfUI.js"></script>
+    
+    <!-- plugin -->
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.knob.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/theme.js"></script>
     
     
-	<style type="text/css">
-	#line-chart {
-		height: 300px;
-		width: 800px;
-		margin: 0px auto;
-		margin-top: 1em;
-	}
-	
-	.brand {
-		font-family: georgia, serif;
-	}
-	
-	.brand .first {
-		color: #ccc;
-		font-style: italic;
-	}
-	
-	.brand .second {
-		color: #fff;
-		font-weight: bold;
-	}
-	</style>
-     -->
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>

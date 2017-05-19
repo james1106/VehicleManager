@@ -24,4 +24,7 @@ public class Constant {
 
 	public static final String[] PAGE_ACCOUNT = null;
 
+	/** 用户有效 */
+	public static final int USER_EFFECTIVE = 1;
+
 }

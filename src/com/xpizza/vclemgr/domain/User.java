@@ -15,35 +15,38 @@ import com.xpizza.core.mvc.AbstractIdDomain;
  */
 @Entity
 @Table(name = "sys02_user")
-public class User extends AbstractIdDomain implements java.io.Serializable{
+public class User extends AbstractIdDomain implements java.io.Serializable {
 
 	private static final long serialVersionUID = 5758558888038261836L;
-	
+
 	/** 用户名 */
-	@Column(name="username",nullable=false,length=32)
+	@Column(name = "username", nullable = false, length = 32)
 	private String username;
-	
+
 	/** 密码MD5 */
-	@Column(name="password",nullable=false,length=32)
+	@Column(name = "password", nullable = false, length = 32)
 	private String password;
-	
+
 	/** 所属角色 */
 	@ManyToOne
-	@JoinColumn(name="roleId")
+	@JoinColumn(name = "roleId")
 	private Role role;
-	
-	/** 状态  0：冻结  1:启用 */
-	@Column(name="status",nullable=false)
+
+	/** 状态 0：冻结 1:启用 */
+	@Column(name = "status", nullable = false)
 	private int status;
-	
-	
+
 	/** 最后一次登录IP */
-	@Column(name="lastIP",length=32)
+	@Column(name = "lastIP", length = 32)
 	private String lastIP;
-	
+
 	/** 创建时间 */
-	@Column(name="timeCreate",nullable=false)
+	@Column(name = "timeCreate", nullable = false)
 	private Date timeCreate;
+
+	/** 创建时间 */
+	@Column(name = "timeView", nullable = false)
+	private Date timeView;
 
 	public String getUsername() {
 		return username;
@@ -93,11 +96,18 @@ public class User extends AbstractIdDomain implements java.io.Serializable{
 		this.timeCreate = timeCreate;
 	}
 
+	public Date getTimeView() {
+		return timeView;
+	}
+
+	public void setTimeView(Date timeView) {
+		this.timeView = timeView;
+	}
+
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", role=" + role + ", status=" + status
-				+ ", lastIP=" + lastIP + ", timeCreate=" + timeCreate + "]";
+				+ ", lastIP=" + lastIP + ", timeCreate=" + timeCreate + ", timeView=" + timeView + "]";
 	}
-	
-	
+
 }

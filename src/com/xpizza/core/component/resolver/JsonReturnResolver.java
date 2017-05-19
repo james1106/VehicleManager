@@ -29,13 +29,14 @@ public class JsonReturnResolver implements HandlerMethodReturnValueHandler {
 	public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest) throws Exception {
 		mavContainer.setRequestHandled(true);// 如果没有视图,则必须设置为true，否则会返回视图层
+		String encoding = returnType.getMethod().getAnnotation(Json.class).encoding();
 		HttpServletResponse response = (HttpServletResponse) webRequest.getNativeResponse();
 		OutputStream os = null;
 		try {
 			String returnJson = new GsonBuilder().create().toJson(returnValue);
 			response.setHeader("Cache-Control", "no-cache");
-			response.setContentType("application/json;charset=UTF-8");
-			byte[] bs = returnJson.getBytes("utf-8");
+			response.setContentType("application/json;charset=" + encoding);
+			byte[] bs = returnJson.getBytes(encoding);
 			response.setContentLength(bs.length);
 			os = response.getOutputStream();
 			os.write(bs);

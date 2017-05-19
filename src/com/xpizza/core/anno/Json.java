@@ -12,4 +12,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Json {
+
+	String encoding() default "UTF-8";
+
 }

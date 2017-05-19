@@ -1,5 +1,7 @@
 package com.xpizza.vclemgr.service;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.xpizza.core.lang.StringUtil;
 import com.xpizza.core.security.MD5;
 import com.xpizza.core.util.Asserts;
+import com.xpizza.vclemgr.constant.Constant;
 import com.xpizza.vclemgr.dao.UserDao;
 import com.xpizza.vclemgr.domain.User;
 
@@ -20,11 +23,13 @@ public class AuthService {
 		// 校验
 		Asserts.isTrue(StringUtil.isNotEmpty(username) && StringUtil.isNotEmpty(password), "用户名或密码不能为空");
 		User user = userDao.findByUsername(username);
-		Asserts.isNotNull(user, "此用户不存在:" + username);
+		Asserts.isNotNull(user, "用户不存在[" + username + "]");
+		Asserts.isTrue(Constant.USER_EFFECTIVE == user.getStatus(), "用户已冻结[" + username + "]");
 		String pwdMD5 = MD5.getMD5CodePlus(password);
 		Asserts.isTrue(pwdMD5.equals(user.getPassword()), "密码输入错误");
 		// 放行
 		user.setLastIP(remoteAddr);
+		user.setTimeView(new Date());
 		userDao.save(user);
 		return user;
 	}
