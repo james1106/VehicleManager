@@ -8,18 +8,11 @@
 
 <body>
     <!-- navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
+    <div class="navbar navbar-default">
             <!-- logo -->
             <!-- <a class="brand" href="index.html"><img src="img/logo.png" /></a> -->
 
-            <ul class="nav pull-right">   
+            <ul class="nav navbar-nav navbar-right">  
             	<!-- search menu -->     
             	<!--         
                 <li class="hidden-phone">
@@ -117,15 +110,17 @@
                 </li>
                  -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                        Your account
-                        <b class="caret"></b>
+                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"> Your account<b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li><a href="personal-info.html">Personal info</a></li>
+                        <li class="divider"></li>
                         <li><a href="#">Account settings</a></li>
+                        <li class="divider"></li>
                         <li><a href="#">Billing</a></li>
+                        <li class="divider"></li>
                         <li><a href="#">Export your data</a></li>
+                        <li class="divider"></li>
                         <li><a href="#">Send feedback</a></li>
                     </ul>
                 </li>
@@ -139,8 +134,8 @@
                         <i class="icon-share-alt"></i>
                     </a>
                 </li>
+                <li>&nbsp;</li>
             </ul>            
-        </div>
     </div>
     <!-- end navbar -->
 
@@ -166,13 +161,13 @@
             <li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-group"></i>
-                    <span>用户管理</span>
+                    <span>用户</span>
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="javascript:loadRight('template/user-list.html');">User list</a></li>
-                    <li><a href="javascript:loadRight('template/new-user.html');">New user form</a></li>
-                    <li><a href="javascript:loadRight('template/user-profile.html');">User profile</a></li>
+                    <li><a href="javascript:loadRight('template/user-list.html', userList);">User list</a></li>
+                    <li><a href="javascript:loadRight('template/new-user.html',demo);">New user form</a></li>
+                    <li><a href="javascript:loadRight('template/user-profile.html',demo);">User profile</a></li>
                 </ul>
             </li>
             <li>
@@ -243,6 +238,7 @@
     <div class="content">
 
         <!-- settings changer -->
+        <!-- 
         <div class="skins-nav">
             <a href="#" class="skin first_nav selected">
                 <span class="icon"></span><span class="text">Default skin</span>
@@ -251,6 +247,7 @@
                 <span class="icon"></span><span class="text">Dark skin</span>
             </a>
         </div>
+         -->
 
 		<!-- Ajax Model -->
         <div class="container-fluid">

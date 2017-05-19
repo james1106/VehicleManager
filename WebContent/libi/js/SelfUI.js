@@ -68,14 +68,6 @@ function commonUI() {
 					});
 }
 
-function loadRight(url) {
-	var rightDiv = $(".container-fluid");
-	rightDiv.empty();
-	rightDiv.load(url, function() {
-		rightDiv.fadeIn(100)
-	});
-}
-
 function showTooltip(x, y, contents) {
 	$('<div id="tooltip">' + contents + '</div>').css({
 		position : 'absolute',

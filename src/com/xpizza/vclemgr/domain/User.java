@@ -44,7 +44,7 @@ public class User extends AbstractIdDomain implements java.io.Serializable {
 	@Column(name = "timeCreate", nullable = false)
 	private Date timeCreate;
 
-	/** 创建时间 */
+	/** 访问时间 */
 	@Column(name = "timeView", nullable = false)
 	private Date timeView;
 
