@@ -1,0 +1,49 @@
+<div align="center">
+	<div id="pic1" style="width: 800px; height: 600px; margin: :20px auto"
+		align="left"></div>
+</div>
+<script>
+	simpleAjax({
+		eqId : tempData
+	}, 'equipmentLoss/eqPie.action', drawPie);
+
+	function drawPie(data) {
+		var pie = data.pie;
+		var myCharts1 = echarts.init(document.getElementById('pic1'));
+		var option1 = {
+			backgroundColor : 'white',
+
+			title : {
+				text : '器材消耗占比',
+				left : 'center',
+				top : 20,
+				textStyle : {
+					color : '#ccc'
+				}
+			},
+			tooltip : {
+				trigger : 'item',
+				formatter : "{a} <br/>{b} : {d}%"
+			},
+
+			visualMap : {
+				show : false,
+				min : 500,
+				max : 600,
+				inRange : {
+					colorLightness : [ 0, 1 ]
+				}
+			},
+			series : [ {
+				name : '器材消耗占比',
+				type : 'pie',
+				clockwise : 'true',
+				startAngle : '0',
+				radius : '60%',
+				center : [ '50%', '50%' ],
+				data : pie
+			} ]
+		};
+		myCharts1.setOption(option1);
+	}
+</script>

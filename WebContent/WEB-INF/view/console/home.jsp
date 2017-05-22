@@ -155,9 +155,9 @@
                 </a>
             </li>            
             <li>
-                <a href="chart-showcase.html">
+                <a href="javascript:loadRight('template/eqLossPie.html');">
                     <i class="icon-signal"></i>
-                    <span>Charts</span>
+                    <span>图表</span>
                 </a>
             </li>
             <li>
@@ -225,6 +225,7 @@
         </div>
     </div>
 
+	<input type="hidden" id="temp" name="temp">
 
 	<!-- scripts -->
     

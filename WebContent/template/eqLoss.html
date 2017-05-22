@@ -1,0 +1,98 @@
+<div id="main" style="height: 600px; border: 1px solid #ccc; padding: 10px;"></div>
+
+
+<script type="text/javascript">
+<!--
+	console.log(tempData);
+	
+	simpleAjax({eqId : tempData}, 'equipmentLoss/singleLine.action', drawLine);
+	
+	function drawLine(data){
+		var xDataArr = data.xDataArr;
+	    // [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+	    var yDataArr = data.yDataArr;
+	    // [ 11, 11, 20, 13, 12, 13, 10 ]
+	    
+	
+		var option = {
+	
+			tooltip : {/*鼠标跟随效果*/
+				trigger : 'axis'
+			},
+			legend : { /*中间的小图标*/
+				data : [ '器材消耗曲线' ]
+			},
+	
+			//右上角工具条
+			toolbox : {
+				show : true,
+				feature : {
+					mark : {
+						show : true
+					},
+					dataView : {
+						show : true,
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
+						show : true
+					}
+				}
+			},
+	
+			xAxis : [ {
+				type : 'category',
+	
+				data : xDataArr,
+				show : true,
+				splitLine : {
+					show : true,
+				}
+			} ],
+			yAxis : [ {
+				type : 'value',
+				name : '损坏次数',
+				axisLabel : { /*坐标轴的刻度文字设置*/
+					formatter : '{value}',
+					textStyle : {
+						color : "yellowgreen"
+					}
+				},
+				splitLine : { /*网格线的设置*/
+					show : true,
+				},
+				axisLine : {/*坐标轴，轴线的设置*/
+					lineStyle : {
+						color : "red",
+					}
+				},
+				axisTick : { /*坐标轴刻度的设置*/
+					lineStyle : {
+						color : "blue",
+					}
+				},
+	
+			}
+	
+			],
+			series : [ {
+				name : '',/*数据的名称*/
+				type : 'line', /*这个数据的类型，画折线*/
+				data : yDataArr,
+				yAxisIndex : 0, /*与上面y轴的数组中，第一组数据对应*/
+	
+			}]
+		};
+	
+		var myChart = echarts.init(document.getElementById('main'));
+		myChart.setOption(option);
+	}
+//-->
+</script>

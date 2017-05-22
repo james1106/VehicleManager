@@ -14,6 +14,8 @@ public interface EquipmentLossDao extends JpaRepository<EquipmentLoss, Long> {
 
 	List<EquipmentLoss> findByIdIn(List<Long> ids);
 
+	List<EquipmentLoss> findByRquipmentId(Long eqId);
+
 	@Transactional
 	void deleteByIdIn(List<Long> ids);
 

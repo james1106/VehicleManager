@@ -22,9 +22,11 @@
 			<button type="button" class="btn btn-danger" onclick="removeMe()">
 				<span class="glyphicon glyphicon-remove"></span> 删除
 			</button>
+			<!-- 
 			<button class="btn btn-primary">
 				<span class="glyphicon glyphicon-go"></span> 器材消耗比例
 			</button>
+			 -->
 		</div>
 		<table id="mmg" class="mmg">
 			<tr>
@@ -75,7 +77,6 @@
 	</div>
 </div>
 
-
 <script type="text/javascript">
 <!--
 	cols = [ {
@@ -98,7 +99,9 @@
 		align : 'right',
 		sortable : true,
 		renderer : function(val){
-			return "<a href='javascript:singleEqLine(" + val + ");'>器材消耗曲线</a>";
+			// return "<a href='javascript:singleEqLine(" + val + ");'>器材消耗曲线</a>";
+			// return "<a href='javascript:loadRight(\"template/eqLoss.html?eqId=" + val + "\");'>器材消耗曲线</a>";
+			return "<a href='javascript:drawLine(\"" + val + "\")';>器材消耗曲线</a>";
 		}
 	} ];
 
@@ -127,8 +130,9 @@
 		return ids.substring(0,ids.length-1);
 	}
 	
-	function singleEqLine(id){
-		alert(id);
+	function drawLine(eqId){
+		tempData = eqId;
+		loadRight("template/eqLoss.html");
 	}
 //-->
 </script>

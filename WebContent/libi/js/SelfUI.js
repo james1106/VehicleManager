@@ -161,3 +161,5 @@ function showTooltip(x, y, contents) {
 		opacity : 0.80
 	}).appendTo("body").fadeIn(200);
 }
+
+var tempData;

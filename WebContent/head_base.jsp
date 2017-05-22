@@ -37,6 +37,7 @@
 	<!-- js -->
     <!-- open source lib -->
     <script type="text/javascript" src="<%=ctxPath %>/libo/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/libo/echarts.common.min.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-datepicker_modified.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-datepicker.zh-CN.js"></script>

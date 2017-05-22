@@ -13,6 +13,8 @@ import com.xpizza.core.lang.exception.DataOutOfRangeException;
  */
 public class DateUtil {
 
+	public static final String FORMAT_BAR0 = "yyyyMMdd";
+
 	/** 格式:年月日以横杠("-")分隔;精确到:年月日 */
 	public static final String FORMAT_BAR1 = "yyyy-MM-dd";
 
