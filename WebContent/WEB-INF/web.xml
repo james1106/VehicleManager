@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>VehicleManager</display-name>
 	<welcome-file-list>
-		<welcome-file>console/home.page</welcome-file>
+		<welcome-file>auth/sign-in.page</welcome-file>
 	</welcome-file-list>
 	
 	<listener>

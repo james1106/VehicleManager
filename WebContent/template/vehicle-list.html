@@ -1,0 +1,267 @@
+<div class="panel panel-info rightbody">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class="icon-search"></i> 查询条件
+		</h3>
+	</div>
+	<div class="panel-body">
+		<form class="form-inline search-condition" role="form" action="vehicle/list.action" method="post">
+			<div class="row" align="center">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label">车辆编号</label> 
+						<input type="text" class="form-control" name="code">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label">驾驶员</label>
+						<input type="text" class="form-control" name="driver">
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row" align="center">
+				<div class="col-sm-6">
+				</div>
+				<div class="col-sm-6">
+					<button type="button" class="btn btn-success" onclick="searchPage()">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<br /> <br />
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class="icon-table"></i> 角色列表
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div style="margin-bottom: 5px;">
+			<button class="btn btn-primary" data-toggle="modal" data-target=".addVehicle">
+				<span class="glyphicon glyphicon-plus"></span> 增加
+			</button>
+			<button type="button" class="btn btn-danger" onclick="removeMe()">
+				<span class="glyphicon glyphicon-remove"></span> 删除
+			</button>
+		</div>
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<!-- 先不分页
+		<div id="pg" style="text-align: right;"></div>
+		 -->
+	</div>
+</div>
+
+<!-- 新增模块 -->
+<div class="modal fade addVehicle">
+	<!--modal,弹出层父级,fade使弹出层有一个运动过程-->
+	<div class="modal-dialog">
+		<!--modal-dialog,弹出层-->
+		<div class="modal-content">
+			<!--modal-content,弹出层内容区域-->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<!--将关闭按钮放在标题前面可以使按钮位于右上角-->
+				<h4>新增车辆录入</h4>
+			</div>
+			<!--modal-header,弹出层头部区域-->
+			<div class="modal-body">
+				<form id="save" class="form-inline" role="form" action="vehicle/save.action" method="post">
+					<div class="row" align="center">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">车辆编号</label> 
+								<input type="text" class="form-control" name="code" required='required'>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">行驶里程</label>
+								<input type="text" class="form-control" name="mileage" required="required">
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row" align="center">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">随车附件</label> 
+								<input type="text" class="form-control" name="attachments" required='required'>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">驾驶员</label>
+								<input type="text" class="form-control" name="driver" required="required">
+							</div>
+						</div>
+					</div>
+					<br/>
+					<br/>
+				</form>
+			</div>
+			<!--modal-body,弹出层主体区域-->
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="modalAjax('save');">确定</button>
+				<!--data-dismiss="modal"点击按钮之后可以关闭窗口-->
+			</div>
+			<!--modal-footer,弹出层底部区域-->
+		</div>
+	</div>
+</div>
+
+<!-- 新增维修通知单 -->
+<div class="modal fade addApply">
+	<!--modal,弹出层父级,fade使弹出层有一个运动过程-->
+	<div class="modal-dialog">
+		<!--modal-dialog,弹出层-->
+		<div class="modal-content">
+			<!--modal-content,弹出层内容区域-->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<!--将关闭按钮放在标题前面可以使按钮位于右上角-->
+				<h4>维修申请</h4>
+			</div>
+			<!--modal-header,弹出层头部区域-->
+			<div class="modal-body">
+				<form id="apply" class="form-inline" role="form" action="repairApply/doApply.action" method="post">
+					<div class="form-group">
+							<label for="name">填写维修申请原因</label>
+							<input type="hidden" class="form-control" id="vehicleId" name="vehicleId">
+							<br/>
+					    	<textarea class="form-control" rows="5" cols="50" name="commentApply"></textarea>
+					</div>
+					<br/>
+					<br/>
+				</form>
+			</div>
+			<!--modal-body,弹出层主体区域-->
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="modalAjax('apply');">确定</button>
+				<!--data-dismiss="modal"点击按钮之后可以关闭窗口-->
+			</div>
+			<!--modal-footer,弹出层底部区域-->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	cols = [ {
+		title : 'ID',
+		name : 'id',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '车辆编号',
+		name : 'code',
+		width : 100,
+		align : 'right',
+		sortable : true
+	},{
+		title : '行驶里程(公里)',
+		name : 'mileage',
+		width : 100,
+		align : 'right',
+		sortable : true
+	}, {
+		title : '随车附件',
+		name : 'attachments',
+		width : 100,
+		align : 'right',
+		sortable : true
+	}, {
+		title : '固定驾驶员',
+		name : 'driver',
+		width : 100,
+		align : 'right',
+		sortable : true
+	}, {
+		title : '车辆状态',
+		name : 'vehicleStatus',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			if(val.status == 1){
+				return val.comment;
+			}else{
+				return "<font color='red'>" + val.comment + "</font>";
+			}
+		}
+	}, {
+		title : '录入时间',
+		name : 'timeCreate',
+		width : 100,
+		align : 'right',
+		sortable : true
+	}, {
+		title : '上次报修时间',
+		name : 'timeRepair',
+		width : 100,
+		align : 'right',
+		sortable : true
+	},{
+		title : '操作',
+		name : 'id',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		type : 'number',
+		renderer : function(val, item){
+			// return "<a href='javascript:doApply(" + val + ");' data-toggle='modal' data-target='.addApply' data-vid = '" + val + "'>报修</a>";
+			return "<a href='javascript:doApply(\"" + val + "\")';>报修</a>";
+		}
+	} ];
+	
+	simpleAjax(null, "auth/getRole.action", roleBack)
+	var roleId;
+	function roleBack(data){
+		var role = data.role;
+		roleId = role.id;
+	}
+
+	function removeMe(){
+		var ids = getIds();
+		if(ids == ""){
+			warn("请选择你要删除的行");
+			return;
+		}
+		var params = {ids : ids};
+		var callUrl = "vehicle/remove.action";
+		simpleAjax(params, callUrl, gridDftBack);
+	}
+	
+	function getIds(){
+		var ids = "";
+		var rows = mmg.selectedRows();
+		var count = rows.length;
+		if(count<=0){
+			return ids;
+		}
+		for(var i=0; i<count; i++){
+			ids += rows[i].id;
+			ids += ",";
+		}
+		return ids.substring(0,ids.length-1);
+	}
+	
+	function doApply(vid){
+		if(roleId == 1 || roleId == '1'){
+			$("#vehicleId").val(vid);
+			$('.addApply').modal('show');
+		}else{
+			warn("只有使用分队才能报修");
+			return;
+		}
+	}
+//-->
+</script>

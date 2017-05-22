@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <%@ include file="/head_base.jsp"%>
-	<title>Detail Admin - Home</title>
-
+	<title>军区通用车辆维修管理系统</title>
+<%@ page import='com.xpizza.vclemgr.domain.*'%>
+<%
+	User user = (User)request.getSession().getAttribute("SESSION_USER");
+	Long roleId = user.getRole().getId();
+%>
 <body>
     <!-- navbar -->
     <div class="navbar navbar-default">
@@ -110,28 +113,27 @@
                 </li>
                  -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"> Your account<b class="caret"></b>
+                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"> 
+                    	${sessionScope.SESSION_USERNAME}(${sessionScope.SESSION_USER.role.name})<b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a href="personal-info.html">Personal info</a></li>
+                    <ul class="dropdown-menu" role="menu">
+                    	<!-- 
+                        <li><a href="javascript:loadRight('template/personal-info.html');">角色管理</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Account settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Billing</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Export your data</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Send feedback</a></li>
+                         -->
+                        <li><a href="javascript:loadRight('template/resetPwd.html');">修改密码</a></li>
                     </ul>
                 </li>
+                <!-- 
                 <li class="settings hidden-phone">
                     <a href="personal-info.html" role="button">
-                        <i class="icon-cog"></i>
+                        <i class="icon-cog icon-2x"></i>
                     </a>
                 </li>
+                 -->
                 <li class="settings hidden-phone">
-                    <a href="signin.html" role="button">
-                        <i class="icon-share-alt"></i>
+                    <a href="auth/signOut.do" role="button">
+                        <i class="icon-signout icon-2x"></i>
                     </a>
                 </li>
                 <li>&nbsp;</li>
@@ -147,7 +149,7 @@
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="<%=ctxPath%>/auth/home.page">
+                <a href="<%=ctxPath%>/console/home.page">
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
@@ -165,68 +167,37 @@
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="javascript:loadRight('template/user-list.html', userList);">User list</a></li>
-                    <li><a href="javascript:loadRight('template/new-user.html',demo);">New user form</a></li>
-                    <li><a href="javascript:loadRight('template/user-profile.html',demo);">User profile</a></li>
+                	<li><a href="javascript:loadRight('template/role-list.html');">角色管理</a></li>
+                	<li><a href="javascript:loadRight('template/user-list.html');">用户管理</a></li>
                 </ul>
             </li>
             <li>
                 <a class="dropdown-toggle" href="#">
-                    <i class="icon-edit"></i>
-                    <span>Forms</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="form-showcase.html">Form showcase</a></li>
-                    <li><a href="form-wizard.html">Form wizard</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="gallery.html">
-                    <i class="icon-picture"></i>
-                    <span>Gallery</span>
-                </a>
-            </li>
-            <li>
-                <a href="calendar.html">
-                    <i class="icon-calendar-empty"></i>
-                    <span>Calendar</span>
-                </a>
-            </li>
-            <li>
-                <a href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle ui-elements" href="#">
-                    <i class="icon-code-fork"></i>
-                    <span>UI Elements</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="ui-elements.html">UI Elements</a></li>
-                    <li><a href="icons.html">Icons</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="personal-info.html">
                     <i class="icon-cog"></i>
-                    <span>My Info</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>Extras</span>
+                    <span>设备</span>
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="code-editor.html">Code editor</a></li>
-                    <li><a href="grids.html">Grids</a></li>
-                    <li><a href="signin.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                	<li><a href="javascript:loadRight('template/equipment-list.html');">器材管理</a></li>
+                    <li><a href="javascript:loadRight('template/vehicle-list.html');">车辆管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-envelope"></i>
+                    <span>单据</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                	<% if(roleId == 1 || roleId == 2 || roleId == 3){ %>
+                    <li><a href="javascript:loadRight('template/repairApply.html');">维修申请</a></li>
+                    <%} %>
+                    <% if(roleId == 2 || roleId == 3 || roleId == 4){ %>
+                    <li><a href="javascript:loadRight('template/repairNotice.html');">维修通知</a></li>
+                    <%} %>
+                    <% if(roleId == 4){ %>
+                    <li><a href="javascript:loadRight('template/repairBill.html');">维修记录</a></li>
+                    <%} %>
                 </ul>
             </li>
         </ul>
@@ -251,282 +222,6 @@
 
 		<!-- Ajax Model -->
         <div class="container-fluid">
-            <!-- upper main stats -->
-            <div id="main-stats">
-                <div class="row-fluid stats-row">
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">2457</span>
-                            visits
-                        </div>
-                        <span class="date">Today</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">3240</span>
-                            users
-                        </div>
-                        <span class="date">February 2014</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">322</span>
-                            orders
-                        </div>
-                        <span class="date">This week</span>
-                    </div>
-                    <div class="span3 stat last">
-                        <div class="data">
-                            <span class="number">$2,340</span>
-                            sales
-                        </div>
-                        <span class="date">last 30 days</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- end upper main stats -->
-            <div id="pad-wrapper">
-                <!-- statistics chart built with jQuery Flot -->
-                <div class="row-fluid chart">
-                    <h4>
-                        Statistics
-                         <div class="btn-group pull-right">
-                            <button class="glow left">DAY</button>
-                            <button class="glow middle active">MONTH</button>
-                            <button class="glow right">YEAR</button>
-                        </div>
-                    </h4>
-                    <div class="span12">
-                        <div id="statsChart"></div>
-                    </div>
-                </div>
-                <!-- end statistics chart -->
-
-                <!-- UI Elements section -->
-                <div class="row-fluid section ui-elements">
-                    <h4>UI Elements</h4>
-                    <div class="span5 knobs">
-                        <div class="knob-wrapper">
-                            <input type="text" value="50" class="knob" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#30a1ec" data-bgcolor="#d4ecfd" data-width="150" />
-                            <div class="info">
-                                <div class="param">
-                                    <span class="line blue"></span>
-                                    Active users
-                                </div>
-                            </div>
-                        </div>
-                        <div class="knob-wrapper">
-                            <input type="text" value="75" class="knob second" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#3d88ba" data-bgcolor="#d4ecfd" data-width="150" />
-                            <div class="info">
-                                <div class="param">
-                                    <span class="line blue"></span>
-                                    % disk space usage
-                                </div>
-                            </div>
-                        </div>                        
-                    </div>
-                    <div class="span6 showcase">
-                        <div class="ui-sliders">
-                            <div class="slider slider-sample1 vertical-handler"></div>
-                            <div class="slider slider-sample2"></div>
-                            <div class="slider slider-sample3"></div>
-                        </div>
-                        <div class="ui-group">
-                            <a class="btn-flat inverse">Large Button</a>
-                            <a class="btn-flat gray">Large Button</a>
-                            <a class="btn-flat default">Large Button</a>
-                            <a class="btn-flat primary">Large Button</a>
-                        </div>                        
-
-                        <div class="ui-group">
-                            <a class="btn-flat icon">
-                                <i class="tool"></i> Icon button
-                            </a>
-                            <a class="btn-glow small inverse">
-                                <i class="shuffle"></i>
-                            </a>
-                            <a class="btn-glow small primary">
-                                <i class="setting"></i>
-                            </a>
-                            <a class="btn-glow small default">
-                                <i class="attach"></i>
-                            </a>
-                            <div class="ui-select">
-                                <select>
-                                    <option selected="" />Dropdown
-                                    <option />Custom selects
-                                    <option />Pure css styles
-                                </select>
-                            </div>
-
-                            <div class="btn-group">
-                                <button class="glow left">LEFT</button>
-                                <button class="glow right">RIGHT</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end UI elements section -->
-
-                <!-- table sample -->
-                <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-                <div class="table-products section">
-                    <div class="row-fluid head">
-                        <div class="span12">
-                            <h4>Products <small>Table sample</small></h4>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid filter-block">
-                        <div class="pull-right">
-                            <div class="ui-select">
-                                <select>
-                                  <option />Filter users
-                                  <option />Signed last 30 days
-                                  <option />Active users
-                                </select>
-                            </div>
-                            <input type="text" class="search" />
-                            <a class="btn-flat new-product">+ Add product</a>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="span3">
-                                        <input type="checkbox" />
-                                        Product
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Description
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row -->
-                                <tr class="first">
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#">There are many variations </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                        <ul class="actions">
-                                            <li><i class="table-edit"></i></li>
-                                            <li><i class="table-settings"></i></li>
-                                            <li class="last"><i class="table-delete"></i></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><i class="table-edit"></i></li>
-                                            <li><i class="table-settings"></i></li>
-                                            <li class="last"><i class="table-delete"></i></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#">Many desktop publishing </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><i class="table-edit"></i></li>
-                                            <li><i class="table-settings"></i></li>
-                                            <li class="last"><i class="table-delete"></i></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <span class="label label-info">Standby</span>
-                                        <ul class="actions">
-                                            <li><i class="table-edit"></i></li>
-                                            <li><i class="table-settings"></i></li>
-                                            <li class="last"><i class="table-delete"></i></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>                                        
-                                        <ul class="actions">
-                                            <li><i class="table-edit"></i></li>
-                                            <li><i class="table-settings"></i></li>
-                                            <li class="last"><i class="table-delete"></i></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="pagination">
-                      <ul>
-                        <li><a href="#">&#8249;</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">&#8250;</a></li>
-                      </ul>
-                    </div>
-                </div>
-                <!-- end table sample -->
-            </div>
         </div>
     </div>
 

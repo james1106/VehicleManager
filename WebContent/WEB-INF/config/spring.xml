@@ -78,7 +78,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="jpaTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="jpaTxManager" />
@@ -104,11 +104,9 @@
 	<!-- ***********************************************************分割线.添加定制效果*********************************************************** -->
 	<!-- 1.全局配置 -->
 	<!-- 1.1.自定义拦截器 -->
-	<!-- 
 	<mvc:interceptors>
-		<bean id="lawlessAuthInterceptor" class="com.tf.vclemgr.component.filter.LawlessAuthInterceptor"></bean>
+		<bean id="lawlessAuthInterceptor" class="com.xpizza.core.component.filter.LawlessAuthInterceptor"></bean>
 	</mvc:interceptors>
-	 -->
 	
 	<!-- 2.resolvers -->
 	<mvc:annotation-driven>

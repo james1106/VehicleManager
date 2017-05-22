@@ -19,6 +19,7 @@
 	<!-- open source lib -->
 	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/bootstrap/css/bootstrap.css" />
 	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/bootstrap/css/bootstrap-responsive.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/bootstrap/css/bootstrap-select.min.css" />
 	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/libo/toastr/toastr.min.css" />
 	<!-- plugin -->
 	<link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/bootstrap-overrides.css" />
@@ -40,6 +41,7 @@
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-datepicker_modified.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-datepicker.zh-CN.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-viewmode.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/libo/bootstrap/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/libo/toastr/toastr.min.js"></script>
     
 	<!-- my lib -->
@@ -47,6 +49,7 @@
     <script type="text/javascript" src="<%=ctxPath %>/libi/js/Message.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/libi/js/AjaxUtil.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/libi/js/SelfUI.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/libi/js/GridPlus.js"></script>
     
     <!-- plugin -->
     <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery-ui-1.10.2.custom.min.js"></script>
@@ -55,6 +58,7 @@
     <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.flot.stack.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.flot.resize.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/plugin/js/theme.js"></script>
+    <script type="text/javascript" src="<%=ctxPath %>/plugin/js/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/plugin/mmGrid/mmGrid.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/plugin/mmGrid/mmPaginator.js"></script>
     <script type="text/javascript" src="<%=ctxPath %>/plugin/mmGrid/plugins.js"></script>

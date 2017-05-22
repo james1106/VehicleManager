@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
+import com.xpizza.core.lang.exception.NotAuthorizedException;
+
 /**
  * 全局错误页面解析器
  */
@@ -36,8 +38,12 @@ public class GenericExceptionResolver extends SimpleMappingExceptionResolver {
 		/* 2.ajax请求处理 */
 		if (isAjaxRequest(request)) {
 			response.setStatus(HttpStatus.OK.value());
-			mav.setViewName("ajax-result");
+			return mav;
 			// mav.addObject("ajaxResult", ajaxResult);
+		}
+		if (exception instanceof NotAuthorizedException) {
+			mav.setViewName("auth/sign-in");
+			return mav;
 		}
 		return mav;
 

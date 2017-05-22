@@ -1,0 +1,272 @@
+<div class="panel panel-info rightbody">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class="icon-search"></i> 查询条件
+		</h3>
+	</div>
+	<div class="panel-body">
+		<form class="form-inline search-condition" role="form" action="repairNotice/list.action" method="post">
+			<div class="row" align="center">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label">通知人</label> 
+							<input type="text" class="form-control" name="userNotice" required='required'>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label">报修车辆</label> 
+							<input type="text" class="form-control" name="vehicle" required='required'>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="row" align="center">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label">维修人</label> 
+							<input type="text" class="form-control" name="userRepair" required='required'>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<button type="button" class="btn btn-success"
+						onclick="searchPage()">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<br /> <br />
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class="icon-table"></i> 维修通知列表
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div style="margin-bottom: 5px;">
+			<button id="accept" type="button" class="btn btn-success" onclick="acceptMe()" style="display: none;">
+				<span class="glyphicon glyphicon-ok"></span> 接收通知
+			</button>
+		</div>
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<!-- 先不分页
+		<div id="pg" style="text-align: right;"></div>
+		 -->
+	</div>
+</div>
+
+
+
+<!-- 新增维修单 -->
+<div class="modal fade addBill">
+	<!--modal,弹出层父级,fade使弹出层有一个运动过程-->
+	<div class="modal-dialog">
+		<!--modal-dialog,弹出层-->
+		<div class="modal-content">
+			<!--modal-content,弹出层内容区域-->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<!--将关闭按钮放在标题前面可以使按钮位于右上角-->
+				<h4>维修申请</h4>
+			</div>
+			<!--modal-header,弹出层头部区域-->
+			<div class="modal-body">
+				<form id="bill" class="form-inline" role="form" action="repairBill/save.action" method="post">
+					<div class="row" align="left">
+						<div class="form-group">
+							<div class="col-sm-5">
+								<label class="form-label">是否修好</label>
+							</div>
+							<div class="col-sm-7">
+								<select id="flagRepair" name="flagRepair" class="form-control">
+									<option value="">---请选择---</option>
+									<option value="1">是</option>
+									<option value="0">否</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row" align="left">
+						<div class="form-group">
+							<div class="col-sm-4">
+								<label class="form-label">损耗器材</label>
+							</div>
+							<div class="col-sm-8">
+								<select id="equipment" name="equipment" multiple="multiple" class="js-data-example-ajax form-control">
+									<option value="">---请选择---</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<br/>
+						<div class="form-group">
+							<label for="name">维修简述</label>
+							<input type="hidden" class="form-control" id="vehicleId" name="vehicleId">
+							<br/>
+					    	<textarea class="form-control" rows="5" cols="50" name="commentRepair"></textarea>
+						</div>
+				</form>
+			</div>
+			<!--modal-body,弹出层主体区域-->
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="modalAjax('bill');">确定</button>
+				<!--data-dismiss="modal"点击按钮之后可以关闭窗口-->
+			</div>
+			<!--modal-footer,弹出层底部区域-->
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+<!--
+	cols = [ {
+		title : 'ID',
+		name : 'id',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '通知人',
+		name : 'userNotice',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			return val.username;
+		}
+	},{
+		title : '报修车辆',
+		name : 'vehicle',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			return val.code;
+		}
+	},{
+		title : '报修原因',
+		name : 'commentNotice',
+		width : 100,
+		align : 'right',
+		sortable : true
+	},{
+		title : '报修时间',
+		name : 'timeNotice',
+		width : 100,
+		align : 'right',
+		sortable : true
+	},{
+		title : '是否接收',
+		name : 'userRepair',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			if(val == null || typeof(val)=="undefined"){
+				return "未接收";
+			}
+			return "已接收";
+		}
+	},{
+		title : '维修人',
+		name : 'userRepair',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			if(val == null || typeof(val)=="undefined"){
+				return "";
+			}
+			return val.username;
+		}
+	},{
+		title : '接收时间',
+		name : 'timeRepair',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			return val;
+		}
+	},{
+		title : '操作',
+		name : 'vehicle',
+		width : 100,
+		align : 'right',
+		sortable : true,
+		renderer : function(val){
+			return "<a href='javascript:billMe(\"" + val.id + "\")';>维修反馈</a>";
+		}
+	} ];
+	
+	
+	var roleId;
+	simpleAjax(null, "auth/getRole.action", roleBack);
+	function roleBack(data){
+		var role = data.role;
+		roleId = role.id;
+		if(role.id == 4){
+			$("#accept").show();
+		}
+	}
+	
+	ajaxList(null, 'equipment/list.action', loadEq);
+
+	function loadEq(data){
+		 var optionString = "";
+		 console.log(data);
+         for (i = 0; i < data.length; i++) {
+             optionString += "<option value=\'"+ data[i].id +"\'>" + data[i].name + "</option>";
+         }
+         var selectObj = $("#" + "equipment");
+         console.log(selectObj.options);
+       	 selectObj.append(optionString);
+       	 selectObj.selectpicker('refresh');
+	}
+	
+
+	function billMe(vid){
+		if(roleId == 4 || roleId == '4'){
+			$("#vehicleId").val(vid);
+			$('.addBill').modal('show');
+		}else{
+			warn("只有维修部门才能做维修记录");
+			return;
+		}
+	}
+	
+	function acceptMe(){
+		var ids = getIds();
+		if(ids == ""){
+			warn("请选择你要操作的行");
+			return;
+		}
+		var params = {ids : ids};
+		var callUrl = "repairNotice/accept.action";
+		simpleAjax(params, callUrl, gridDftBack);
+	}
+
+	function getIds(){
+		var ids = "";
+		var rows = mmg.selectedRows();
+		var count = rows.length;
+		if(count<=0){
+			return ids;
+		}
+		for(var i=0; i<count; i++){
+			ids += rows[i].id;
+			ids += ",";
+		}
+		return ids.substring(0,ids.length-1);
+	}
+	
+//-->
+</script>

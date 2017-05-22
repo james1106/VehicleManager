@@ -17,6 +17,8 @@ public class Constant {
 	public static final String PAGE_RESET_PASSWORD = "reset-password.page";
 
 	/* SESEION KEY BEGIN */
+	public static final String SESSION_USER = "SESSION_USER";
+
 	public static final String SESSION_USERNAME = "SESSION_USERNAME";
 
 	public static final String SESSION_USERID = "SESSION_USERID";

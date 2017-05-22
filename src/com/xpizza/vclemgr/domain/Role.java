@@ -20,7 +20,7 @@ public class Role extends AbstractIdDomain implements java.io.Serializable {
 	private String name;
 
 	/** 角色说明 */
-	@Column(name="comment",nullable=true,length=32)
+	@Column(name="comment",nullable=true,length=128)
 	private String comment;
 
 	public String getName() {
