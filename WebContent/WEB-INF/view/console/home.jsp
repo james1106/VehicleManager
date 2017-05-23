@@ -160,6 +160,7 @@
                     <span>图表</span>
                 </a>
             </li>
+            <% if(roleId == 2){ // 只有管理助手才有权限操作用户和角色%>
             <li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-group"></i>
@@ -171,6 +172,7 @@
                 	<li><a href="javascript:loadRight('template/user-list.html');">用户管理</a></li>
                 </ul>
             </li>
+            <%} %>
             <li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-cog"></i>

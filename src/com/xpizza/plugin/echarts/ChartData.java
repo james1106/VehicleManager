@@ -1,5 +1,8 @@
 package com.xpizza.plugin.echarts;
 
+/**
+ * 图形数据
+ */
 public class ChartData {
 
 	private String name;
