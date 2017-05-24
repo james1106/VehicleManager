@@ -58,7 +58,7 @@ public class EquipmentLossService {
 			Equipment equipment = it.next();
 			ChartData chartData = new ChartData();
 			chartData.setName(equipment.getName());
-			chartData.setValue(String.valueOf(map.get(equipment)));
+			chartData.setValue(map.get(equipment));
 			pie.add(chartData);
 		}
 		return pie;

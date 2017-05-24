@@ -53,6 +53,19 @@ public class EquipmentController {
 	}
 
 	@Json
+	@RequestMapping("updateNum.action")
+	public Data updateNum(String eqId, String num) {
+		Data data = new Data();
+		try {
+			equipmentService.updateNum(eqId, num);
+		} catch (Throwable thr) {
+			logger.warn(thr.getMessage());
+			data.setError(thr.getMessage());
+		}
+		return data;
+	}
+
+	@Json
 	@RequestMapping("remove.action")
 	public Data remove(String ids, HttpServletRequest request) {
 		Data data = new Data();

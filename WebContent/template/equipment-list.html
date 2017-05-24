@@ -77,8 +77,100 @@
 	</div>
 </div>
 
+
+<!-- 新增购买计划单 -->
+<div class="modal fade purchaseApplyPlan">
+	<!--modal,弹出层父级,fade使弹出层有一个运动过程-->
+	<div class="modal-dialog">
+		<!--modal-dialog,弹出层-->
+		<div class="modal-content">
+			<!--modal-content,弹出层内容区域-->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<!--将关闭按钮放在标题前面可以使按钮位于右上角-->
+				<h4>器材购买计划</h4>
+			</div>
+			<!--modal-header,弹出层头部区域-->
+			<div class="modal-body">
+				<form id="purchaseApplyPlan" class="form-inline" role="form" action="purchasePlan/save.action" method="post">
+					<div class="row" align="center">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">器材数量(整数)</label> 
+								<input type="text" class="form-control" name="num" required='required'>
+							</div>
+						</div>
+						<div class="col-sm-6">
+						</div>
+					</div>
+					<br/>
+					<label for="name">填写购买理由</label>
+					<input type="hidden" class="form-control" id="eqId" name="eqId">
+					<br/>
+					<textarea class="form-control" rows="5" cols="50" name="reason"></textarea>
+				</form>
+			</div>
+			<!--modal-body,弹出层主体区域-->
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="modalAjax('purchaseApplyPlan');">确定</button>
+				<!--data-dismiss="modal"点击按钮之后可以关闭窗口-->
+			</div>
+			<!--modal-footer,弹出层底部区域-->
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 入库 -->
+<div class="modal fade updateNum">
+	<!--modal,弹出层父级,fade使弹出层有一个运动过程-->
+	<div class="modal-dialog">
+		<!--modal-dialog,弹出层-->
+		<div class="modal-content">
+			<!--modal-content,弹出层内容区域-->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<!--将关闭按钮放在标题前面可以使按钮位于右上角-->
+				<h4>器材入库</h4>
+			</div>
+			<!--modal-header,弹出层头部区域-->
+			<div class="modal-body">
+				<form id="updateNum" class="form-inline" role="form" action="equipment/updateNum.action" method="post">
+					<div class="row" align="center">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label">器材数量(整数)</label> 
+								<input type="text" class="form-control" name="num" required='required'>
+							</div>
+						</div>
+						<div class="col-sm-6">
+						</div>
+						<input type="hidden" class="form-control" id="eqId2" name="eqId">
+					</div>
+				</form>
+			</div>
+			<!--modal-body,弹出层主体区域-->
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="modalAjax('updateNum');">确定</button>
+				<!--data-dismiss="modal"点击按钮之后可以关闭窗口-->
+			</div>
+			<!--modal-footer,弹出层底部区域-->
+		</div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
 <!--
+	
+	simpleAjax(null, "auth/getRole.action", roleBack)
+	var roleId;
+	function roleBack(data){
+		var role = data.role;
+		roleId = role.id;
+	}
+
 	cols = [ {
 		title : 'ID',
 		name : 'id',
@@ -92,6 +184,12 @@
 		width : 100,
 		align : 'right',
 		sortable : true
+	}, {
+		title : '库存',
+		name : 'stock',
+		width : 100,
+		align : 'right',
+		sortable : true
 	},{
 		title : '操作',
 		name : 'id',
@@ -101,7 +199,14 @@
 		renderer : function(val){
 			// return "<a href='javascript:singleEqLine(" + val + ");'>器材消耗曲线</a>";
 			// return "<a href='javascript:loadRight(\"template/eqLoss.html?eqId=" + val + "\");'>器材消耗曲线</a>";
-			return "<a href='javascript:drawLine(\"" + val + "\")';>器材消耗曲线</a>";
+			var operate = "<a href='javascript:drawLine(\"" + val + "\")';>消耗曲线</a>";
+			if(roleId == 2 || roleId == '2'){
+				operate += "&nbsp;&nbsp;&nbsp;";
+				operate += "<a href='javascript:purchaseApplyPlan(\"" + val + "\")';>筹措计划</a>";
+				operate += "&nbsp;&nbsp;&nbsp;";
+				operate += "<a href='javascript:updateNum(\"" + val + "\")';>增加库存</a>";
+			}
+			return operate;
 		}
 	} ];
 
@@ -134,5 +239,24 @@
 		tempData = eqId;
 		loadRight("template/eqLoss.html");
 	}
+	
+	function purchaseApplyPlan(eqId){
+		if(roleId == 2 || roleId == '2'){
+			$("#eqId").val(eqId);
+			$('.purchaseApplyPlan').modal('show');
+		}else{
+			warn("需要有管理员权限");
+		}
+	}
+	
+	function updateNum(eqId){
+		if(roleId == 2 || roleId == '2'){
+			$("#eqId2").val(eqId);
+			$('.updateNum').modal('show');
+		}else{
+			warn("需要有管理员权限");
+		}
+	}
+	
 //-->
 </script>

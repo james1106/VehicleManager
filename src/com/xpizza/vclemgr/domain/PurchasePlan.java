@@ -11,26 +11,31 @@ import javax.persistence.Table;
 import com.xpizza.core.mvc.AbstractIdDomain;
 
 /**
- * 报修单据
+ * 购买计划
  */
 @Entity
-@Table(name = "repairApply")
-public class RepairApply extends AbstractIdDomain implements java.io.Serializable {
+@Table(name = "purchasePlan")
+public class PurchasePlan extends AbstractIdDomain implements java.io.Serializable {
 
-	private static final long serialVersionUID = -3420281399647620114L;
+	private static final long serialVersionUID = -1894477280530510639L;
 
-	/* ***1.报修*** */
+	/** 器材 */
+	@ManyToOne
+	@JoinColumn(name = "equipmentId")
+	private Equipment equipment;
+
+	/**
+	 * 购买数量
+	 */
+	@Column(name = "num", nullable = false)
+	private Long num;
+
 	/** 单据申请人 */
 	@ManyToOne
 	@JoinColumn(name = "userApplyId")
 	private User userApply;
 
-	/** 报修车辆 */
-	@ManyToOne
-	@JoinColumn(name = "vehicleId")
-	private Vehicle vehicle;
-
-	/** 报修说明 */
+	/** 购买说明 */
 	@Column(name = "commentApply", length = 128)
 	private String commentApply;
 
@@ -52,20 +57,28 @@ public class RepairApply extends AbstractIdDomain implements java.io.Serializabl
 	@Column(name = "timeApprove")
 	private Date timeApprove;
 
+	public Equipment getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
+	}
+
+	public Long getNum() {
+		return num;
+	}
+
+	public void setNum(Long num) {
+		this.num = num;
+	}
+
 	public User getUserApply() {
 		return userApply;
 	}
 
 	public void setUserApply(User userApply) {
 		this.userApply = userApply;
-	}
-
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
 	}
 
 	public String getCommentApply() {
@@ -110,9 +123,9 @@ public class RepairApply extends AbstractIdDomain implements java.io.Serializabl
 
 	@Override
 	public String toString() {
-		return "RepairApply [userApply=" + userApply + ", vehicle=" + vehicle + ", commentApply=" + commentApply
-				+ ", timeApply=" + timeApply + ", userApprove=" + userApprove + ", flagApprove=" + flagApprove
-				+ ", timeApprove=" + timeApprove + "]";
+		return "PurchasePlan [equipment=" + equipment + ", num=" + num + ", userApply=" + userApply + ", commentApply="
+				+ commentApply + ", timeApply=" + timeApply + ", userApprove=" + userApprove + ", flagApprove="
+				+ flagApprove + ", timeApprove=" + timeApprove + "]";
 	}
 
 }

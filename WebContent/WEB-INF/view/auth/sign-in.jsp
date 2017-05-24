@@ -45,20 +45,28 @@
 
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>登录</h6>
+                <h6>军区通用车辆维修管理系统</h6>
+                <br/>
                 <!-- 
                 <input name="username" class="span12" type="text" placeholder="输入用户名" />
                 <input name="password" class="span12" type="password" placeholder="输入密码" />
                  -->
                 	<form id="signInForm" class="form-inline" role="form" action="auth/signIn.action" method="post">
-                		<div class="row" align="center">
 		                	<input type="text" class="form-control" name="username" required="required" placeholder="输入用户名" style="width:300px">
+		                	<br/>
+		                	<input type="password" class="form-control" name="password" required="required" placeholder="输入密码" style="width:300px">
+						<!-- 
+                		<div class="row" align="center">
 		                </div>
 		                <div class="row" align="center">
-		                	<input type="password" class="form-control" name="password" required="required" placeholder="输入密码" style="width:300px">
 		                </div>
+		                 -->
 		                <br/>
-                		<a class="btn-glow primary login" href="javascript:signIn();">登录</a>
+		                <br/>
+                		<!-- <a class="btn-glow primary login" href="javascript:signIn();" style="width: 300px">登       录</a> -->
+                		<button type="button" class="btn btn-info" onclick="signIn()" style="width: 300px">
+							<span class="glyphicon"></span> 登      录
+						</button>
                 	</form>
             </div>
         </div>

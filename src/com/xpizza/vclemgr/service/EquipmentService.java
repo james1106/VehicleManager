@@ -22,11 +22,20 @@ public class EquipmentService {
 	public void save(String name) {
 		Equipment equipment = new Equipment();
 		equipment.setName(name);
+		equipment.setStock(0L);
 		equipmentDao.save(equipment);
 	}
 
 	public void remove(List<Long> ids) {
 		equipmentDao.deleteByIdIn(ids);
+	}
+
+	public void updateNum(String eqId, String num) {
+		Equipment equipment = equipmentDao.findOne(Long.parseLong(eqId));
+		Long stock = equipment.getStock();
+		stock += Long.parseLong(num.trim());
+		equipment.setStock(stock);
+		equipmentDao.save(equipment);
 	}
 
 }

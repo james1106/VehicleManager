@@ -197,9 +197,7 @@
 		return ids.substring(0,ids.length-1);
 	}
 	
-	$(function () {
-		ajaxList(null, 'role/list.action', loadRole);
-	});
+	ajaxList(null, 'role/list.action', loadRole);
 	
 	function loadRole(data){
 		 var optionString = "";

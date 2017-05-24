@@ -19,6 +19,9 @@ public class Equipment extends AbstractIdDomain implements java.io.Serializable 
 	@Column(name = "name", nullable = false, length = 32)
 	private String name;
 
+	@Column(name = "stock", nullable = false)
+	private Long stock;
+
 	public String getName() {
 		return name;
 	}
@@ -27,9 +30,17 @@ public class Equipment extends AbstractIdDomain implements java.io.Serializable 
 		this.name = name;
 	}
 
+	public Long getStock() {
+		return stock;
+	}
+
+	public void setStock(Long stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public String toString() {
-		return "Equipment [name=" + name + "]";
+		return "Equipment [name=" + name + ", stock=" + stock + "]";
 	}
 
 }

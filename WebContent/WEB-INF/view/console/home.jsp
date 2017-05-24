@@ -9,6 +9,7 @@
 	User user = (User)request.getSession().getAttribute("SESSION_USER");
 	Long roleId = user.getRole().getId();
 %>
+
 <body>
     <!-- navbar -->
     <div class="navbar navbar-default">
@@ -199,6 +200,9 @@
                     <%} %>
                     <% if(roleId == 4){ %>
                     <li><a href="javascript:loadRight('template/repairBill.html');">维修记录</a></li>
+                    <%} %>
+                     <% if(roleId == 2 || roleId == 3){ %>
+                    <li><a href="javascript:loadRight('template/purchasePlan.html');">购买计划</a></li>
                     <%} %>
                 </ul>
             </li>

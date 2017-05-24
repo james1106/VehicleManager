@@ -19,4 +19,6 @@ public interface EquipmentDao extends JpaRepository<Equipment, Long> {
 	@Transactional
 	void deleteByIdIn(List<Long> ids);
 
+	List<Equipment> findByNameLike(String string);
+
 }

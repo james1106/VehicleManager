@@ -7,7 +7,7 @@ public class ChartData {
 
 	private String name;
 
-	private String Value;
+	private int value;
 
 	public String getName() {
 		return name;
@@ -17,17 +17,17 @@ public class ChartData {
 		this.name = name;
 	}
 
-	public String getValue() {
-		return Value;
+	public int getValue() {
+		return value;
 	}
 
-	public void setValue(String value) {
-		Value = value;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return "ChartData [name=" + name + ", Value=" + Value + "]";
+		return "ChartData [name=" + name + ", value=" + value + "]";
 	}
 
 }

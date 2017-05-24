@@ -19,8 +19,8 @@ function declareToast() {
 		"closeButton" : false, // 是否显示关闭按钮
 		"debug" : false, // 是否使用debug模式
 		"positionClass" : "toast-top-center",
-		"showDuration" : "300",// 显示的动画时间
-		"hideDuration" : "1000",// 消失的动画时间
+		"showDuration" : "800",// 显示的动画时间
+		"hideDuration" : "3000",// 消失的动画时间
 		"timeOut" : "1000", // 展现时间
 		"extendedTimeOut" : "1000",// 加长展示时间
 		"showEasing" : "swing",// 显示时的动画缓冲方式
