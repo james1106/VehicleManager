@@ -6,7 +6,12 @@ var mmg;
 
 var cols;
 
+function clearData() {
+	$('.mmg table').clear();
+}
+
 function searchPage() {
+	// clearData();
 	var searchForm = $(".search-condition");
 	mmg = $('.mmg').mmGrid({
 		height : 450,

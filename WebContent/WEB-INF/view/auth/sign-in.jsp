@@ -6,7 +6,7 @@
 <%@ include file="/head_base.jsp"%>
 	<title>登录</title>
     <link type="text/css" rel="stylesheet" href="<%=ctxPath %>/plugin/css/signin.css" />
-<body background="img/bg.jpg">
+<body background="img/bg4.png">
 
 
     <!-- background switcher -->
@@ -37,15 +37,14 @@
         </div>
     </div>
      -->
-
-
+	
     <div class="row-fluid login-wrapper">
-        <a href="index.html">
-        </a>
-
+        <h1><font color="white">军区通用车辆维修管理系统</font></h1>
+		<br/>
+		<br/>
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>军区通用车辆维修管理系统</h6>
+                
                 <br/>
                 <!-- 
                 <input name="username" class="span12" type="text" placeholder="输入用户名" />

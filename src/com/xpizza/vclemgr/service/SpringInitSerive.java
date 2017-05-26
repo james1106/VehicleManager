@@ -165,6 +165,7 @@ public class SpringInitSerive {
 		}
 		Equipment newOne = new Equipment();
 		newOne.setName(name);
+		newOne.setStock(1000L);
 		logger.info("创建新设备:" + newOne);
 		equipmentDao.save(newOne);
 	}
