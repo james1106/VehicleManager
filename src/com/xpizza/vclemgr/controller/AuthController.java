@@ -70,11 +70,11 @@ public class AuthController {
 
 	@Json
 	@RequestMapping("rePwd.action")
-	public Data rePwd(String oldPwd, String oldPwd2, String newPwd, HttpServletRequest request,
+	public Data rePwd(String oldPwd, String newPwd, String newPwd2, HttpServletRequest request,
 			@Session(Constant.SESSION_USER) User user) {
 		Data data = new Data();
 		try {
-			authService.rePwd(oldPwd, oldPwd2, newPwd, user);
+			authService.rePwd(oldPwd, newPwd, newPwd2, user);
 			request.getSession().invalidate();
 		} catch (Throwable thr) {
 			logger.warn(thr.getMessage());

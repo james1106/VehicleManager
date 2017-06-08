@@ -34,10 +34,10 @@ public class AuthService {
 		return user;
 	}
 
-	public void rePwd(String oldPwd, String oldPwd2, String newPwd, User user) {
-		Asserts.isTrue(StringUtil.isNotEmpty(oldPwd) && StringUtil.isNotEmpty(oldPwd2) && StringUtil.isNotEmpty(newPwd),
+	public void rePwd(String oldPwd, String newPwd, String newPwd2, User user) {
+		Asserts.isTrue(StringUtil.isNotEmpty(oldPwd) && StringUtil.isNotEmpty(newPwd) && StringUtil.isNotEmpty(newPwd2),
 				"请填写完密码重置表单");
-		Asserts.isTrue(oldPwd.equals(oldPwd2), "旧密码两次输入不一样");
+		Asserts.isTrue(newPwd.equals(newPwd2), "新密码两次输入不一样");
 		Asserts.isTrue(!oldPwd.equals(newPwd), "旧密码与新密码不能一致");
 		String oldPwdMD5 = MD5.getMD5CodePlus(oldPwd);
 		String password = user.getPassword();
